@@ -1,22 +1,86 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  title = 'Fragments & Flows',
+  description = "Fragments & Flows is Aris Goudouras' personal webpage and digital garden",
+  image = 'https://fragmentsandflows.com/fragments-and-flows-1200x630.png',
+} = Astro.props;
+---
+
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+    <!-- SEO -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+
+    <!-- Twitter -->
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+<style is:global>
+  @import 'tailwindcss';
+
+  @theme {
+    --font-sans: 'Noto Sans', sans-serif;
+    --font-serif: 'Spectral', serif;
+    --font-mono: 'Fira Code', monospace;
+
+    --color-rose-50: #fff0fa;
+    --color-rose-100: #ffe3f8;
+    --color-rose-200: #ffc6f2;
+    --color-rose-300: #ff98e5;
+    --color-rose-400: #ff58d1;
+    --color-rose-500: #ff27bb;
+    --color-rose-600: #ff0099;
+    --color-rose-700: #df007a;
+    --color-rose-800: #b80065;
+    --color-rose-900: #980356;
+    --color-rose-950: #5f0030;
+  }
+
+  html {
+    font-family: 'Noto Sans', sans-serif;
+    font-optical-sizing: auto;
+  }
+  body {
+    margin: 0;
+    background-color: #f6f5f1;
+  }
 </style>
