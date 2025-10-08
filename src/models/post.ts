@@ -5,42 +5,46 @@ export const postSchema = z.object({
   title: z.string(),
   description: z.string(),
   image: z.string().url().optional(),
-  status: z.enum(['unstarted', 'draft', 'published']).default('unstarted'),
+  type: z
+    .enum(['idea', 'excerpt', 'note', 'draft', 'revision', 'distillation'])
+    .default('draft'),
   createdAt: z.coerce.date(),
   updatedAt: z.coerce.date(),
-  publishedAt: z.coerce.date().optional(),
 });
 
 export type Post = z.infer<typeof postSchema>;
 
-export type PublishedPost = Post & { status: 'published'; publishedAt: Date };
-export type DraftPost = Post & { status: 'draft' };
-export type UnstartedPost = Post & { status: 'unstarted' };
+export type IdeaPost = Post & { type: 'idea' };
+export type ExcerptPost = Post & { type: 'excerpt' };
+export type NotePost = Post & { type: 'note' };
+export type DraftPost = Post & { type: 'draft' };
+export type RevisionPost = Post & { type: 'revision' };
+export type DistillationPost = Post & { type: 'distillation' };
 
 export const getDisplayDate = (post: Post) => {
-  if (post.status === 'published' && post.publishedAt) {
-    return `Published on ${post.publishedAt.toLocaleDateString()}`;
-  }
-
-  if (post.status === 'draft') {
-    if (post.updatedAt) {
-      return `Last updated on ${post.updatedAt.toLocaleDateString()}`;
-    }
-
-    return `Created on ${post.createdAt.toLocaleDateString()}`;
-  }
-
-  return 'Coming Soon';
+  return post.updatedAt;
 };
 
-export const isPublishedPost = (post: Post): post is PublishedPost => {
-  return post.status === 'published' && post.publishedAt !== undefined;
+export const isIdeaPost = (post: Post): post is IdeaPost => {
+  return post.type === 'idea';
+};
+
+export const isExcerptPost = (post: Post): post is ExcerptPost => {
+  return post.type === 'excerpt';
+};
+
+export const isNotePost = (post: Post): post is NotePost => {
+  return post.type === 'note';
 };
 
 export const isDraftPost = (post: Post): post is DraftPost => {
-  return post.status === 'draft';
+  return post.type === 'draft';
 };
 
-export const isUnstartedPost = (post: Post): post is UnstartedPost => {
-  return post.status === 'unstarted';
+export const isRevisionPost = (post: Post): post is RevisionPost => {
+  return post.type === 'revision';
+};
+
+export const isDistillationPost = (post: Post): post is DistillationPost => {
+  return post.type === 'distillation';
 };
