@@ -1,4 +1,6 @@
 ---
+import { getEntry } from 'astro:content';
+
 import Layout from '../layouts/Layout.astro';
 import NavigationBar from '../components/navigation/NavigationBar.astro';
 import MainContainer from '../components/MainContainer.astro';
@@ -13,6 +15,13 @@ const featuredWriting: Post[] = [
   externalPosts['Introducing v2 Editor'],
   externalPosts['Towards a Communist Theory of Value'],
 ];
+
+const excerptsAndNotes: Post[] = [
+  await getEntry('garden', 'thinking-and-art-as-interplay-between-creator-and-audience'),
+].filter((post) => !!post).map((post) => post.data);
+if (excerptsAndNotes.length !== 1) {
+  throw new Error('Excerpt or note not found');
+}
 
 const heroParagraphStyles = 'text-base/6 sm:text-lg/7 md:text-xl/8 m-0 font-light'
 ---
@@ -105,17 +114,34 @@ const heroParagraphStyles = 'text-base/6 sm:text-lg/7 md:text-xl/8 m-0 font-ligh
 
       <hr class="my-10 opacity-10" />
 
-      <div class="flex flex-col gap-4">
-        <h2
-          class="text-center sm:text-left text-2xl sm:text-3xl md:text-4xl font-serif font-bold"
-        >
-          Notes & Excerpts
-        </h2>
-        <p class={heroParagraphStyles}>
-          Rough notes and excerpts from works that I liked or just wanted to
-          capture and revisit later.
-        </p>
+      <div class="flex flex-col gap-8">
+        <div class="flex flex-col gap-4">
+          <h2
+            class="text-center sm:text-left text-2xl sm:text-3xl md:text-4xl font-serif font-bold"
+          >
+            Notes & Excerpts
+          </h2>
+          <p class={heroParagraphStyles}>
+            Rough notes and excerpts from works that I liked or just wanted to
+            capture and revisit later.
+          </p>
+        </div>
+
+        {
+          excerptsAndNotes.length > 0 && (
+            <div class="flex flex-col gap-6">
+              {excerptsAndNotes.map((post) => (
+                <PostComponent post={post} size="small" />
+              ))}
+              
+            </div>
+            <a href="/garden/writing/1">
+              <Button classes="w-full sm:w-auto" text="See all Essays and Drafts" size="lg" />
+            </a>
+          )
+        }
       </div>
+      
     </div>
 
     <Footer />

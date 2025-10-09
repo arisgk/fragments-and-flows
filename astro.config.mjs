@@ -1,12 +1,10 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-
+import icon from 'astro-icon';
 import tailwindcss from '@tailwindcss/vite';
 import rehypeClassNames from 'rehype-class-names';
 
 import { linkStyles } from './src/components/typography';
-
-import icon from 'astro-icon';
 
 // https://astro.build/config
 export default defineConfig({
@@ -31,6 +29,8 @@ export default defineConfig({
           ol: 'list-decimal pl-6 mb-4',
           li: 'text-base/7 md:text-lg/9 text-left sm:text-justify',
           pre: 'p-4 font-mono bg-black/5 overflow-x-auto mb-6',
+          blockquote:
+            'text-base/loose pl-4 border-l-4 border-black/10 dark:border-white/20 mb-4',
         },
       ],
     ],

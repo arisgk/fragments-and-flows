@@ -3,7 +3,7 @@ import { Icon } from 'astro-icon/components';
 
 import {
   type Post,
-  getDisplayDate,
+  getFormattedDisplayDate,
   isInternalPost,
   isExternalPost,
   getIconName,
@@ -20,13 +20,7 @@ const { post, size } = Astro.props;
 <div class="flex flex-col items-center sm:items-start gap-2">
   <div class="flex items-center gap-3">
     <p class="text-xs md:text-sm text-black/75">
-      {
-        getDisplayDate(post).toLocaleDateString('en-US', {
-          year: 'numeric',
-          month: 'short',
-          day: 'numeric',
-        })
-      }
+      {getFormattedDisplayDate(post)}
     </p>
   </div>
 
@@ -34,16 +28,18 @@ const { post, size } = Astro.props;
     href={isInternalPost(post) ? `/garden/${post.slug}` : post.url}
     target={isExternalPost(post) ? '_blank' : undefined}
     rel={isExternalPost(post) ? 'noopener' : undefined}
-    ><div class="flex gap-2 items-center">
-      <Icon name={getIconName(post)} aria-hidden="true" class="size-6" /><h3
+  >
+    <div class="flex gap-2 items-center">
+      <Icon name={getIconName(post)} aria-hidden="true" class="size-6" />
+      <h3
         class={size === 'normal'
           ? 'text-xl sm:text-2xl md:text-3xl text-center sm:text-left font-serif font-bold'
           : 'text-lg md:text-[1.375rem] text-center sm:text-left font-serif font-bold'}
       >
         {post.title}
       </h3>
-    </div></a
-  >
+    </div>
+  </a>
   <p
     class={size === 'normal'
       ? 'text-base/7 md:text-lg/8 text-justify text-black font-light'

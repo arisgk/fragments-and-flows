@@ -46,6 +46,13 @@ export const getDisplayDate = (post: Post) => {
   return post.updatedAt;
 };
 
+export const getFormattedDisplayDate = (post: Post) =>
+  getDisplayDate(post).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  });
+
 export const isIdeaPost = (post: Post): post is IdeaPost => {
   return post.type === 'idea';
 };
