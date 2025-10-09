@@ -12,17 +12,22 @@ import {
 interface Props {
   post: Post;
   size: 'small' | 'normal';
+  displayDate?: boolean;
 }
 
-const { post, size } = Astro.props;
+const { post, size, displayDate = true } = Astro.props;
 ---
 
 <div class="flex flex-col items-center sm:items-start gap-2">
-  <div class="flex items-center gap-3">
-    <p class="text-xs md:text-sm text-black/75">
-      {getFormattedDisplayDate(post)}
-    </p>
-  </div>
+  {
+    displayDate && (
+      <div class="flex items-center gap-3">
+        <p class="text-xs md:text-sm text-black/75">
+          {getFormattedDisplayDate(post)}
+        </p>
+      </div>
+    )
+  }
 
   <a
     href={isInternalPost(post) ? `/garden/${post.slug}` : post.url}

@@ -18,8 +18,9 @@ const featuredWriting: Post[] = [
 
 const excerptsAndNotes: Post[] = [
   await getEntry('garden', 'thinking-and-art-as-interplay-between-creator-and-audience'),
+  await getEntry('garden', 'subjective-roots-of-the-revolutionary-project'),
 ].filter((post) => !!post).map((post) => post.data);
-if (excerptsAndNotes.length !== 1) {
+if (excerptsAndNotes.length !== 2) {
   throw new Error('Excerpt or note not found');
 }
 
@@ -131,7 +132,7 @@ const heroParagraphStyles = 'text-base/6 sm:text-lg/7 md:text-xl/8 sm:text-justi
           excerptsAndNotes.length > 0 && (
             <div class="flex flex-col gap-6">
               {excerptsAndNotes.map((post) => (
-                <PostComponent post={post} size="small" />
+                <PostComponent post={post} size="small" displayDate={false} />
               ))}
               
             </div>
