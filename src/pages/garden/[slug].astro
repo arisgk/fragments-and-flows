@@ -1,0 +1,40 @@
+---
+import { getCollection, render, type InferEntrySchema } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import NavigationBar from '../../components/navigation/NavigationBar.astro';
+import Footer from '../../components/Footer.astro';
+import MainContainer from '../../components/MainContainer.astro';
+import { getDisplayDate, isInternalPost } from '../../models/post';
+
+const { slug } = Astro.params;
+const posts = await getCollection('garden');
+const postEntry = posts.find(
+  (p) => isInternalPost(p.data) && p.data.slug === slug
+);
+
+if (!postEntry) {
+  throw new Error('Post not found');
+}
+
+const post = postEntry.data;
+const { Content } = await render(postEntry);
+---
+
+<Layout title={post.title} description={post.description} image={post.image}>
+  <MainContainer>
+    <NavigationBar />
+
+    <div class="flex flex-auto justify-center">
+      <div class="px-6 flex-auto w-full max-w-3xl flex flex-col gap-3">
+        <div class="flex-initial flex items-center gap-4">
+          <p class="text-xs md:text-sm text-black/75">{getDisplayDate(post)}</p>
+        </div>
+        <div>
+          <Content />
+        </div>
+      </div>
+    </div>
+
+    <Footer />
+  </MainContainer>
+</Layout>

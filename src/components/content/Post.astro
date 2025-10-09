@@ -1,5 +1,5 @@
 ---
-import { type Post, getDisplayDate } from '../../models/post';
+import { type Post, getDisplayDate, isInternalPost } from '../../models/post';
 
 interface Props {
   post: Post;
@@ -16,7 +16,7 @@ const { post, size } = Astro.props;
     </p>
   </div>
 
-  <a href=`/garden/${post.slug}`
+  <a href={isInternalPost(post) ? `/garden/${post.slug}` : post.url}
     ><h3
       class={size === 'normal'
         ? 'text-xl sm:text-2xl md:text-3xl text-center sm:text-left font-serif font-bold'

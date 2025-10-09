@@ -1,7 +1,6 @@
 import { z } from 'astro:content';
 
-export const postSchema = z.object({
-  slug: z.string(),
+const basePostSchema = z.object({
   title: z.string(),
   description: z.string(),
   image: z.string().url().optional(),
@@ -12,6 +11,20 @@ export const postSchema = z.object({
   updatedAt: z.coerce.date(),
 });
 
+const internalPostSchema = basePostSchema.extend({
+  slug: z.string(),
+});
+
+export type InternalPost = z.infer<typeof internalPostSchema>;
+
+const externalPostSchema = basePostSchema.extend({
+  url: z.string().url(),
+});
+
+export type ExternalPost = z.infer<typeof externalPostSchema>;
+
+export const postSchema = z.union([internalPostSchema, externalPostSchema]);
+
 export type Post = z.infer<typeof postSchema>;
 
 export type IdeaPost = Post & { type: 'idea' };
@@ -20,6 +33,14 @@ export type NotePost = Post & { type: 'note' };
 export type DraftPost = Post & { type: 'draft' };
 export type RevisionPost = Post & { type: 'revision' };
 export type DistillationPost = Post & { type: 'distillation' };
+
+export const isInternalPost = (post: Post): post is InternalPost => {
+  return 'slug' in post;
+};
+
+export const isExternalPost = (post: Post): post is ExternalPost => {
+  return 'url' in post;
+};
 
 export const getDisplayDate = (post: Post) => {
   return post.updatedAt;
