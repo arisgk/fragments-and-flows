@@ -69,3 +69,20 @@ export const isRevisionPost = (post: Post): post is RevisionPost => {
 export const isDistillationPost = (post: Post): post is DistillationPost => {
   return post.type === 'distillation';
 };
+
+export const getIconName = (post: Post) => {
+  switch (post.type) {
+    case 'idea':
+      return 'idea';
+    case 'excerpt':
+      return 'excerpt';
+    case 'note':
+      return 'note';
+    case 'draft':
+      return 'draft';
+    case 'revision':
+      return 'document';
+    case 'distillation':
+      return 'graduation-cap';
+  }
+};
