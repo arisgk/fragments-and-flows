@@ -1,5 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import netlify from '@astrojs/netlify';
 import icon from 'astro-icon';
 import tailwindcss from '@tailwindcss/vite';
 import rehypeClassNames from 'rehype-class-names';
@@ -43,4 +44,5 @@ export default defineConfig({
       iconDir: 'src/assets/icons',
     }),
   ],
+  adapter: netlify(),
 });
