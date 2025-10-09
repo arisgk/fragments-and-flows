@@ -2,7 +2,7 @@
 slug: thinking-and-art-as-interplay-between-creator-and-audience
 title: 'Thinking and Art as Interplay between Creator and Audience'
 description: 'Thoughts from Castoriadis and Rodostoglou. When should one publish their work? How and when does the audience start creatively interacting with an artifact?'
-status: 'excerpt'
+type: 'excerpt'
 createdAt: '2025-10-09'
 updatedAt: '2025-10-09'
 ---
