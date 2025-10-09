@@ -12,6 +12,8 @@ const featuredWriting: Post[] = [
   externalPosts['Introducing v2 Editor'],
   externalPosts['Towards a Communist Theory of Value'],
 ];
+
+const heroParagraphStyles = 'text-base/6 sm:text-lg/7 md:text-xl/8 m-0 font-light'
 ---
 
 <Layout title="Fragments & Flows">
@@ -21,16 +23,16 @@ const featuredWriting: Post[] = [
     <div class="flex flex-col align-center px-6 gap-10 sm:gap-30 md:gap-40">
       <div class="flex flex-auto flex-col justify-around">
         <div class="flex flex-col py-0 gap-6">
-          <p class="text-base/6 sm:text-lg/7 md:text-xl/8 m-0 font-light">
+          <p class={heroParagraphStyles}>
             Hi, I’m Aris! Welcome to my personal website and digital garden!
           </p>
-          <p class="text-base/6 sm:text-lg/7 md:text-xl/8 m-0 font-light">
+          <p class={heroParagraphStyles}>
             I write software, so much of the content in this website is around
             software engineering, architecture and programming paradigms. I also
             enjoy digital product design, so you may read about user experience
             and human-computer interaction.
           </p>
-          <p class="text-base/6 sm:text-lg/7 md:text-xl/8 m-0 font-light">
+          <p class={heroParagraphStyles}>
             But I dislike being a specialist. I enjoy reading philosophy and
             human sciences, especially political theory and sociology. I like
             reflecting on how we think and work, especially when it comes to
@@ -38,14 +40,14 @@ const featuredWriting: Post[] = [
             philosophical systems and the flows of influence and association
             between thinkers.
           </p>
-          <p class="text-base/6 sm:text-lg/7 md:text-xl/8 m-0 font-light">
+          <p class={heroParagraphStyles}>
             I believe there is something fundamentally wrong with the current
             social order and seek to analyze its inner workings while organizing
             with people that want to create alternatives. I endorse emancipatory
             social forms that broadly belong to the anarchist communist
             tradition.
           </p>
-          <p class="text-base/6 sm:text-lg/7 md:text-xl/8 m-0 font-light">
+          <p class={heroParagraphStyles}>
             I am a member of a small software R&D collective, Oktana, and these
             days we are focusing on developing v2, a local-first rich text
             editor with version control capabilities.
@@ -68,7 +70,7 @@ const featuredWriting: Post[] = [
         >
           The Garden
         </h1>
-        <p class="text-base/6 sm:text-lg/7 md:text-xl/8 m-0 font-light">
+        <p class={heroParagraphStyles}>
           A collection of essays, notes and excerpts being curated over time.
         </p>
       </div>
@@ -79,7 +81,7 @@ const featuredWriting: Post[] = [
           >
             Writing
           </h2>
-          <p class="text-base/6 sm:text-lg/7 md:text-xl/8 m-0 font-light">
+          <p class={heroParagraphStyles}>
             Long-form writing including documents in various stages of maturity,
             from drafts to polished essays.
           </p>
@@ -108,7 +110,7 @@ const featuredWriting: Post[] = [
         >
           Notes & Excerpts
         </h2>
-        <p class="text-base/6 sm:text-lg/7 md:text-xl/8 m-0 font-light">
+        <p class={heroParagraphStyles}>
           Rough notes and excerpts from works that I liked or just wanted to
           capture and revisit later.
         </p>
