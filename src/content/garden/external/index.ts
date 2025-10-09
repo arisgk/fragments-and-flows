@@ -10,6 +10,15 @@ export const externalPosts: { [key: string]: ExternalPost } = {
     createdAt: new Date('2025-09-04'),
     updatedAt: new Date('2025-09-12'),
   },
+  'Introducing Oktana': {
+    url: 'https://oktana.dev/blog/introducing-oktana',
+    title: 'Introducing Oktana',
+    description:
+      'The introductory text for our newly formed collective, Oktana. Read about why we came together, our critique and vision for work and technology and our desires for the present and future of our initiative. Originally published in the Oktana blog.',
+    type: 'draft',
+    createdAt: new Date('2025-09-07'),
+    updatedAt: new Date('2025-09-07'),
+  },
   'Towards a Communist Theory of Value': {
     url: 'https://ikee.lib.auth.gr/record/355439/?ln=en',
     title: 'Towards a Communist Theory of Value',
