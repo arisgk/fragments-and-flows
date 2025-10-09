@@ -7,6 +7,7 @@ import Button from '../components/actions/buttons/Button.astro';
 import { externalPosts } from '../content/garden/external';
 import { type Post } from '../models/post';
 import PostComponent from '../components/content/Post.astro'
+import { linkStyles } from '../components/typography'
 
 const featuredWriting: Post[] = [
   externalPosts['Introducing v2 Editor'],
@@ -24,7 +25,7 @@ const heroParagraphStyles = 'text-base/6 sm:text-lg/7 md:text-xl/8 m-0 font-ligh
       <div class="flex flex-auto flex-col justify-around">
         <div class="flex flex-col py-0 gap-6">
           <p class={heroParagraphStyles}>
-            Hi, I’m Aris! Welcome to my personal website and digital garden!
+            Hi, I’m Aris! Welcome to my personal website and <a href="https://maggieappleton.com/garden-history" target="_blank" rel="noopener" class={linkStyles}>digital garden</a>!
           </p>
           <p class={heroParagraphStyles}>
             I write software, so much of the content in this website is around
@@ -48,8 +49,8 @@ const heroParagraphStyles = 'text-base/6 sm:text-lg/7 md:text-xl/8 m-0 font-ligh
             tradition.
           </p>
           <p class={heroParagraphStyles}>
-            I am a member of a small software R&D collective, Oktana, and these
-            days we are focusing on developing v2, a local-first rich text
+            I am a member of a small software R&D collective, <a href="https://oktana.dev" target="_blank" rel="noopener" class={linkStyles}>Oktana</a>, and these
+            days we are focusing on developing <a href="https://v2editor.com" target="_blank" rel="noopener" class={linkStyles}>v2</a>, a local-first rich text
             editor with version control capabilities.
           </p>
         </div>
@@ -95,8 +96,8 @@ const heroParagraphStyles = 'text-base/6 sm:text-lg/7 md:text-xl/8 m-0 font-ligh
               ))}
               
             </div>
-            <a href="/blog/published/1">
-              <Button classes="w-full sm:w-auto" text="See all Published Posts" size="lg" />
+            <a href="/garden/writing/1">
+              <Button classes="w-full sm:w-auto" text="See all Essays and Drafts" size="lg" />
             </a>
           )
         }
