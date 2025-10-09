@@ -1,0 +1,78 @@
+---
+import { type GetStaticPaths, type Page } from 'astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import NavigationBar from '../../../components/navigation/NavigationBar.astro';
+import Footer from '../../../components/Footer.astro';
+import MainContainer from '../../../components/MainContainer.astro';
+import {
+  isDistillationPost,
+  isDraftPost,
+  isRevisionPost,
+} from '../../../models/post';
+import PostComponent from '../../../components/content/Post.astro';
+import PaginationControls from '../../../components/PaginationControls.astro';
+import { externalPosts } from '../../../content/garden/external';
+
+export const prerender = true;
+
+export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
+  const allGardenEntries = await getCollection('garden');
+
+  const externalPostEntries = Object.values(externalPosts)
+    .filter(
+      (post) =>
+        isDraftPost(post) || isRevisionPost(post) || isDistillationPost(post)
+    )
+    .map((post) => ({ id: post.url, data: post }));
+
+  const filteredPosts = [
+    ...allGardenEntries.filter(
+      (post) =>
+        isDraftPost(post.data) ||
+        isRevisionPost(post.data) ||
+        isDistillationPost(post.data)
+    ),
+    ...externalPostEntries,
+  ];
+
+  return paginate(filteredPosts, {
+    pageSize: 10,
+  });
+};
+
+const { page } = Astro.props as { page: Page<CollectionEntry<'garden'>> };
+---
+
+<Layout
+  title="Fragments and Flows | Writing"
+  description="Fragments and Flows | Long-form writing including documents in various stages of maturity, from drafts to polished essays."
+>
+  <MainContainer>
+    <NavigationBar />
+
+    <div class="flex-auto flex flex-col gap-6 md:gap-10 px-6">
+      <h1
+        class="text-center sm:text-left text-4xl sm:text-5xl md:text-6xl font-serif font-bold"
+      >
+        Writing
+      </h1>
+
+      <div class="flex flex-col gap-10">
+        {
+          page.data.map((postEntry) => (
+            <PostComponent post={postEntry.data} size="normal" />
+          ))
+        }
+      </div>
+    </div>
+
+    {
+      page.lastPage > 1 && (
+        <PaginationControls page={page} basePath={`/garden/writing`} />
+      )
+    }
+
+    <Footer />
+  </MainContainer>
+</Layout>
