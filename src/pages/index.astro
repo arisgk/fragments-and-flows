@@ -20,9 +20,10 @@ const featuredWriting: Post[] = [
 const excerptsAndNotes: Post[] = [
   await getEntry('garden', 'thinking-and-art-as-interplay-between-creator-and-audience'),
   await getEntry('garden', 'software-philosophy-of-language-and-ddd'),
+  await getEntry('garden', 'artificial-scarcity-social-relations-and-properties-of-economic-goods'),
   await getEntry('garden', 'subjective-roots-of-the-revolutionary-project'),
 ].filter((post) => !!post).map((post) => post.data);
-if (excerptsAndNotes.length !== 3) {
+if (excerptsAndNotes.length !== 4) {
   throw new Error('Excerpt or note not found');
 }
 
