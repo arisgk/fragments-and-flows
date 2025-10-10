@@ -21,22 +21,16 @@ const { Content } = await render(postEntry);
 ---
 
 <Layout title={post.title} description={post.description} image={post.image}>
-  <MainContainer>
-    <NavigationBar />
-
-    <div class="flex flex-auto justify-center">
-      <div class="px-6 flex-auto w-full max-w-3xl flex flex-col gap-3">
-        <div class="flex-initial flex items-center gap-4">
-          <p class="text-xs md:text-sm text-black/70 dark:text-white/70">
-            {getFormattedDisplayDate(post)}
-          </p>
-        </div>
-        <div>
-          <Content />
-        </div>
+  <div class="flex flex-auto justify-center">
+    <div class="px-6 flex-auto w-full max-w-3xl flex flex-col gap-3">
+      <div class="flex-initial flex items-center gap-4">
+        <p class="text-xs md:text-sm text-black/70 dark:text-white/70">
+          {getFormattedDisplayDate(post)}
+        </p>
+      </div>
+      <div>
+        <Content />
       </div>
     </div>
-
-    <Footer />
-  </MainContainer>
+  </div>
 </Layout>

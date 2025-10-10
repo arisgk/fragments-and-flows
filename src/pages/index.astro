@@ -29,123 +29,117 @@ const heroParagraphStyles = 'text-black/85 dark:text-white/85 text-base/6 sm:tex
 ---
 
 <Layout title="Fragments & Flows">
-  <MainContainer>
-    <NavigationBar />
-
-    <div class="flex flex-col align-center px-6 gap-10 sm:gap-30 md:gap-40">
-      <div class="flex flex-auto flex-col justify-around">
-        <div class="flex flex-col py-0 gap-6">
-          <p class={heroParagraphStyles}>
-            Hi, I’m Aris! Welcome to my personal website and <a href="https://maggieappleton.com/garden-history" target="_blank" rel="noopener" class={linkStyles}>digital garden</a>!
-          </p>
-          <p class={heroParagraphStyles}>
-            I write software, so much of the content in this website is around
-            software engineering, architecture and programming paradigms. I also
-            enjoy digital product design, so you may read about user experience
-            and human-computer interaction.
-          </p>
-          <p class={heroParagraphStyles}>
-            But I dislike being a specialist. I enjoy reading philosophy and
-            human sciences, especially political theory and sociology. I like
-            reflecting on how we think and work, especially when it comes to
-            knowledge work. I seek to understand the various ontologies behind
-            philosophical systems and the flows of influence and association
-            between thinkers.
-          </p>
-          <p class={heroParagraphStyles}>
-            I believe there is something fundamentally wrong with the current
-            social order and seek to analyze its inner workings while organizing
-            with people that want to create alternatives. I endorse emancipatory
-            social forms that broadly belong to the anarchist communist
-            tradition.
-          </p>
-          <p class={heroParagraphStyles}>
-            I am a member of a small software R&D collective, <a href="https://oktana.dev" target="_blank" rel="noopener" class={linkStyles}>Oktana</a>, and these
-            days we are focusing on developing <a href="https://v2editor.com" target="_blank" rel="noopener" class={linkStyles}>v2</a>, a local-first rich text
-            editor with version control capabilities.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="px-6">
-      <hr class="my-14 opacity-10 text-black dark:text-white" />
-    </div>
-    
-
-    <div
-      class="flex-auto flex flex-col align-stretch sm:align-start gap-6 md:gap-8 px-6"
-    >
-      <div class="flex flex-col gap-4">
-        <h1
-          class="text-black/90 dark:text-white/90 text-center sm:text-left text-4xl sm:text-5xl md:text-6xl font-serif font-bold"
-        >
-          The Garden
-        </h1>
+  <div class="flex flex-col align-center px-6 gap-10 sm:gap-30 md:gap-40">
+    <div class="flex flex-auto flex-col justify-around">
+      <div class="flex flex-col py-0 gap-6">
         <p class={heroParagraphStyles}>
-          A collection of essays, notes and excerpts being curated over time.
+          Hi, I’m Aris! Welcome to my personal website and <a href="https://maggieappleton.com/garden-history" target="_blank" rel="noopener" class={linkStyles}>digital garden</a>!
+        </p>
+        <p class={heroParagraphStyles}>
+          I write software, so much of the content in this website is around
+          software engineering, architecture and programming paradigms. I also
+          enjoy digital product design, so you may read about user experience
+          and human-computer interaction.
+        </p>
+        <p class={heroParagraphStyles}>
+          But I dislike being a specialist. I enjoy reading philosophy and
+          human sciences, especially political theory and sociology. I like
+          reflecting on how we think and work, especially when it comes to
+          knowledge work. I seek to understand the various ontologies behind
+          philosophical systems and the flows of influence and association
+          between thinkers.
+        </p>
+        <p class={heroParagraphStyles}>
+          I believe there is something fundamentally wrong with the current
+          social order and seek to analyze its inner workings while organizing
+          with people that want to create alternatives. I endorse emancipatory
+          social forms that broadly belong to the anarchist communist
+          tradition.
+        </p>
+        <p class={heroParagraphStyles}>
+          I am a member of a small software R&D collective, <a href="https://oktana.dev" target="_blank" rel="noopener" class={linkStyles}>Oktana</a>, and these
+          days we are focusing on developing <a href="https://v2editor.com" target="_blank" rel="noopener" class={linkStyles}>v2</a>, a local-first rich text
+          editor with version control capabilities.
         </p>
       </div>
-      <div class="flex flex-col gap-8">
-        <div class="flex flex-col gap-4">
-          <h2
-            class="text-black/90 dark:text-white/90 text-center sm:text-left text-2xl sm:text-3xl md:text-4xl font-serif font-bold"
-          >
-            Writing
-          </h2>
-          <p class={heroParagraphStyles}>
-            Long-form writing including documents in various stages of maturity,
-            from drafts to polished essays.
-          </p>
-        </div>
+    </div>
+  </div>
 
-        {
-          featuredWriting.length > 0 && (
-            <div class="flex flex-col gap-6">
-              {featuredWriting.map((post) => (
-                <PostComponent post={post} size="normal" />
-              ))}
-              
-            </div>
-            <a href="/garden/writing/1">
-              <Button classes="w-full sm:w-auto" text="See all Essays and Drafts" size="lg" />
-            </a>
-          )
-        }
+  <div class="px-6">
+    <hr class="my-14 opacity-10 text-black dark:text-white" />
+  </div>
+  
+
+  <div
+    class="flex-auto flex flex-col align-stretch sm:align-start gap-6 md:gap-8 px-6"
+  >
+    <div class="flex flex-col gap-4">
+      <h1
+        class="text-black/90 dark:text-white/90 text-center sm:text-left text-4xl sm:text-5xl md:text-6xl font-serif font-bold"
+      >
+        The Garden
+      </h1>
+      <p class={heroParagraphStyles}>
+        A collection of essays, notes and excerpts being curated over time.
+      </p>
+    </div>
+    <div class="flex flex-col gap-8">
+      <div class="flex flex-col gap-4">
+        <h2
+          class="text-black/90 dark:text-white/90 text-center sm:text-left text-2xl sm:text-3xl md:text-4xl font-serif font-bold"
+        >
+          Writing
+        </h2>
+        <p class={heroParagraphStyles}>
+          Long-form writing including documents in various stages of maturity,
+          from drafts to polished essays.
+        </p>
       </div>
 
-      <hr class="my-10 opacity-10 text-black dark:text-white" />
-
-      <div class="flex flex-col gap-8">
-        <div class="flex flex-col gap-4">
-          <h2
-            class="text-black/90 dark:text-white/90 text-center sm:text-left text-2xl sm:text-3xl md:text-4xl font-serif font-bold"
-          >
-            Notes & Excerpts
-          </h2>
-          <p class={heroParagraphStyles}>
-            Rough notes and excerpts from works that I liked or just wanted to
-            capture and revisit later.
-          </p>
-        </div>
-
-        {
-          excerptsAndNotes.length > 0 && (
-            <div class="flex flex-col gap-6">
-              {excerptsAndNotes.map((post) => (
-                <PostComponent post={post} size="small" displayDate={false} />
-              ))}
-              
-            </div>
-            <a href="/garden/notes-and-excerpts/1">
-              <Button classes="w-full sm:w-auto" text="See all Notes and Excerpts" size="lg" />
-            </a>
-          )
-        }
-      </div>
-      
+      {
+        featuredWriting.length > 0 && (
+          <div class="flex flex-col gap-6">
+            {featuredWriting.map((post) => (
+              <PostComponent post={post} size="normal" />
+            ))}
+            
+          </div>
+          <a href="/garden/writing/1">
+            <Button classes="w-full sm:w-auto" text="See all Essays and Drafts" size="lg" />
+          </a>
+        )
+      }
     </div>
 
-    <Footer />
-  </MainContainer>
+    <hr class="my-10 opacity-10 text-black dark:text-white" />
+
+    <div class="flex flex-col gap-8">
+      <div class="flex flex-col gap-4">
+        <h2
+          class="text-black/90 dark:text-white/90 text-center sm:text-left text-2xl sm:text-3xl md:text-4xl font-serif font-bold"
+        >
+          Notes & Excerpts
+        </h2>
+        <p class={heroParagraphStyles}>
+          Rough notes and excerpts from works that I liked or just wanted to
+          capture and revisit later.
+        </p>
+      </div>
+
+      {
+        excerptsAndNotes.length > 0 && (
+          <div class="flex flex-col gap-6">
+            {excerptsAndNotes.map((post) => (
+              <PostComponent post={post} size="small" displayDate={false} />
+            ))}
+            
+          </div>
+          <a href="/garden/notes-and-excerpts/1">
+            <Button classes="w-full sm:w-auto" text="See all Notes and Excerpts" size="lg" />
+          </a>
+        )
+      }
+    </div>
+    
+  </div>
 </Layout>
