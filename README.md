@@ -1,46 +1,34 @@
-# Astro Starter Kit: Basics
+# Fragments & Flows Website
 
-```sh
-npm create astro@latest -- --template basics
-```
+This is the codebase for the [Fragments & Flows website](https://fragmentsandflows.com/).
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Built using [Astro](https://astro.build/).
 
-## 🚀 Project Structure
+## How to add Posts to the Digital Garden
 
-Inside of your Astro project, you'll see the following folders and files:
+Digital garden posts are written in Markdown and are located in `content/garden`. Just add a new markdown file there and it will get a URL corresponding to the file name and appear in the garden posts list. Make sure to set the metadata properly, defined at the top of the Markdown file (before the actual Markdown).
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
+When updating posts, it's good to set the updated-at date manually in the metadata (this hasn't yet been automated).
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Development
 
-## 🧞 Commands
+These are the basic commands used for development:
 
-All commands are run from the root of the project, from a terminal:
+| Command           | Action                                       |
+| :---------------- | :------------------------------------------- |
+| `npm install`     | Installs dependencies                        |
+| `npm run dev`     | Starts local dev server at `localhost:4321`  |
+| `npm run build`   | Build your production site to `./dist/`      |
+| `npm run preview` | Preview your build locally, before deploying |
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+### Pages and Routing
 
-## 👀 Want to learn more?
+Astro is opinionated in how you add routes, so it's good to familiarize with [file-based routing](https://docs.astro.build/en/guides/routing/) if you want to add a new page.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+### Content & Digital Garden
+
+Astro [Content Collections](https://docs.astro.build/en/guides/content-collections/) are used for defining and loading the digital garden posts.
+
+## Deployment
+
+The website is currently deployed to [Netlify](https://www.netlify.com/) using the relevant [Netlify Adapter](https://docs.astro.build/en/guides/integrations-guide/netlify/). Every time you push to the `main` branch, a fresh Netlify deployment is triggered (there is an integration between GitHub and Netlify).
