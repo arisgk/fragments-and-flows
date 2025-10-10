@@ -11,7 +11,7 @@ export const loadThemeAndRegisterSwitchHandlers = () => {
 
   // Update document element class and theme icon
   document.documentElement.classList.toggle('dark', isDark);
-  const themeIcon = document.getElementById('theme-toggle-icon');
+  const themeIcon = document.getElementById('theme-icon');
   if (themeIcon) {
     themeIcon.innerHTML = isDark ? MoonIcon : SunIcon;
   }
