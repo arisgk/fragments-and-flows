@@ -50,10 +50,16 @@ const {
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body>
+  <body class="bg-[#f9f9f7] dark:bg-neutral-800">
     <slot />
   </body>
 </html>
+
+<script>
+  import { loadThemeAndRegisterSwitchHandlers } from '../theme';
+  loadThemeAndRegisterSwitchHandlers();
+</script>
+
 <style is:global>
   @import 'tailwindcss';
 
@@ -75,12 +81,13 @@ const {
     --color-indigo-950: #262343;
   }
 
+  @custom-variant dark (&:where(.dark, .dark *));
+
   html {
     font-family: 'Noto Sans', sans-serif;
     font-optical-sizing: auto;
   }
   body {
     margin: 0;
-    background-color: #f9f9f7;
   }
 </style>

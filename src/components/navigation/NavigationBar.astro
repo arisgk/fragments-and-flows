@@ -1,11 +1,20 @@
 ---
-import { Image } from 'astro:assets';
-
-import logo from '../../assets/images/logo.svg';
+import Logo from '../../assets/images/logo.svg';
+import ThemeSwitcher from '../ThemeSwitcher.astro';
 ---
 
-<nav class="flex flex-initial justify-center items-center px-0 py-4 sm:py-6">
-  <a href="/" class="no-underline">
-    <Image src={logo} alt="Fragments & Flows" height="64" />
-  </a>
+<nav
+  class="flex flex-initial justify-center items-center px-4 py-4 sm:px-6 sm:py-6"
+>
+  <div class="flex-auto flex justify-start lg:justify-center">
+    <a href="/" class="no-underline">
+      <Logo
+        class="fill-black/90 dark:fill-white/90 h-[32px] sm:h-[48px] md:h-[64px] w-fit"
+      />
+    </a>
+  </div>
+
+  <div class="flex-initial">
+    <ThemeSwitcher />
+  </div>
 </nav>
