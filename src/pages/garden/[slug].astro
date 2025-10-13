@@ -1,10 +1,24 @@
 ---
-import { getCollection, render, type InferEntrySchema } from 'astro:content';
+import { type GetStaticPaths } from 'astro';
+import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
-import NavigationBar from '../../components/navigation/NavigationBar.astro';
-import Footer from '../../components/Footer.astro';
-import MainContainer from '../../components/MainContainer.astro';
 import { getFormattedDisplayDate, isInternalPost } from '../../models/post';
+
+export const prerender = true;
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const allGardenEntries = await getCollection('garden');
+
+  const filteredPosts = [
+    ...allGardenEntries.filter((post) => isInternalPost(post.data)),
+  ];
+
+  return filteredPosts.map((post) => ({
+    params: {
+      slug: post.id,
+    },
+  }));
+};
 
 const { slug } = Astro.params;
 const posts = await getCollection('garden');
