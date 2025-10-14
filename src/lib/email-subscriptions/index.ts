@@ -1,8 +1,12 @@
 import pg from 'pg';
 import { randomBytes } from 'crypto';
 import { z } from 'zod';
-
-import { type SuccessResult, type ErrorResult } from './result';
+import {
+  type Subscriber,
+  type SubscribeResult,
+  type UnsubscribeResult,
+  type GetSubscribersResult,
+} from './types';
 
 const { Client } = pg;
 
@@ -26,27 +30,6 @@ type DBSubscriber = {
   created_at: string;
   unsubscribed_at: string | null;
 };
-
-type Subscriber = {
-  id: string;
-  email: string;
-  status: 'active' | 'unsubscribed';
-  unsubscribeToken: string;
-  createdAt: string;
-  unsubscribedAt: string | null;
-};
-
-export type SubscribeResult =
-  | (SuccessResult & { alreadySubscribed?: boolean })
-  | ErrorResult;
-
-export type UnsubscribeResult =
-  | (SuccessResult & { alreadyUnsubscribed?: boolean })
-  | ErrorResult;
-
-export type GetSubscribersResult =
-  | SuccessResult<Pick<Subscriber, 'email' | 'unsubscribeToken'>[]>
-  | ErrorResult;
 
 const toSubscriber = (row: DBSubscriber): Subscriber => {
   return {
@@ -185,3 +168,5 @@ export async function getActiveSubscribers(): Promise<GetSubscribersResult> {
     await client.end();
   }
 }
+
+export * from './types';

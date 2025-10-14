@@ -4,7 +4,7 @@ import {
   unsubscribe,
   unsubscribeInputSchema,
   type UnsubscribeResult,
-} from '../lib/newsletter';
+} from '../lib/email-subscriptions';
 import Layout from '../layouts/Layout.astro';
 
 export const prerender = false;
@@ -30,7 +30,9 @@ try {
 
     result = {
       success: false,
-      error: (err as Error).message || 'Unexpected error',
+      error:
+        (err as Error).message ||
+        'An error occured when trying to unsubscribe from the newsletter. Please contact me to resolve this.',
     };
   }
 }
@@ -52,8 +54,8 @@ try {
     >
       {
         result.success
-          ? 'You were successfully unsubscribed from the newsletter'
-          : '❌ There was an error in unsubscribing you from the newsletter'
+          ? 'You were successfully unsubscribed from the newsletter.'
+          : '❌ There was an error in unsubscribing you from the newsletter. Please contact me to resolve this.'
       }
     </p>
   </div>

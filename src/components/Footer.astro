@@ -85,16 +85,16 @@ import Button from '../components/actions/buttons/Button.astro';
 </footer>
 
 <script>
-  import { type SubscribeResult } from '../lib/newsletter';
+  import { type SubscribeResult } from '../lib/email-subscriptions/types';
 
   const form = document.getElementById(
     'newsletter-form'
   ) as HTMLFormElement | null;
   const newsletterFeedbackContainer = document.getElementById(
-    'newsletter-status'
+    'newsletter-feedback-container'
   ) as HTMLParagraphElement | null;
   const newsletterFeedbackParagraph = document.getElementById(
-    'newsletter-status'
+    'newsletter-feedback-paragraph'
   ) as HTMLParagraphElement | null;
   const submitButton = form?.querySelector<
     HTMLButtonElement | HTMLInputElement
@@ -106,7 +106,7 @@ import Button from '../components/actions/buttons/Button.astro';
     !newsletterFeedbackContainer ||
     !newsletterFeedbackParagraph
   ) {
-    throw new Error('Form or status element not found');
+    throw new Error('Form or feedback element not found');
   }
 
   const feedbackContainerSuccessClasses =

@@ -5,7 +5,7 @@ import {
   subscribe,
   subscribeInputSchema,
   type SubscribeInput,
-} from '../../lib/newsletter';
+} from '../../lib/email-subscriptions';
 
 export const prerender = false;
 
@@ -37,7 +37,11 @@ export const POST: APIRoute = async ({ request }) => {
     console.error('Subscribe API error:', err);
 
     return new Response(
-      JSON.stringify({ success: false, error: 'Unexpected error' }),
+      JSON.stringify({
+        success: false,
+        error:
+          'An error occured when trying to subscribe to the newsletter. Please contact me to resolve this.',
+      }),
       {
         status: 500,
         headers: { 'Content-Type': 'application/json' },
