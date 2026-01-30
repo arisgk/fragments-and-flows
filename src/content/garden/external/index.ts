@@ -28,4 +28,22 @@ export const externalPosts: { [key: string]: ExternalPost } = {
     createdAt: new Date('2024-03-15'),
     updatedAt: new Date('2024-03-15'),
   },
+  'v2 Technical Dive': {
+    url: 'https://oktana.dev/blog/v2-technical-dive',
+    title: 'v2 Technical Dive',
+    description:
+      'A deep dive into the technical stack, architecture, and challenges behind our new rich text editor, v2. We share our experience building a local-first cross-platform app, blending TypeScript (Electron) and Haskell (via WASM), and how our integration of Automerge, ProseMirror, and Pandoc enables seamless versioning and format conversion. Originally published in the Oktana blog.',
+    type: 'revision',
+    createdAt: new Date('2026-01-20'),
+    updatedAt: new Date('2026-01-20'),
+  },
+  'Updating an Electron App hosted on GitHub with electron-updater': {
+    url: 'https://oktana.dev/blog/updating-electron-app',
+    title: 'Updating an Electron App hosted on GitHub with electron-updater',
+    description:
+      'A guide on how to implement updates in an Electron application, focusing on the GitHub publishing provider. Based on how cross-platform updates are implemented in our v2 editor. Originally published in the Oktana blog.',
+    type: 'revision',
+    createdAt: new Date('2025-11-10'),
+    updatedAt: new Date('2025-11-10'),
+  },
 };
