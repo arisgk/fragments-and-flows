@@ -19,15 +19,6 @@ export const externalPosts: { [key: string]: ExternalPost } = {
     createdAt: new Date('2025-09-07'),
     updatedAt: new Date('2025-09-07'),
   },
-  'Towards a Communist Theory of Value': {
-    url: 'https://ikee.lib.auth.gr/record/355439/?ln=en',
-    title: 'Towards a Communist Theory of Value',
-    description:
-      'My master thesis for the Political Theory program of the School of Political Sciences, Aristotle University of Thessaloniki. Its domain is social action, both its constitution and orientation, mainly explored through the concept of value. Within it, I argue for abolishing the dominant conception of value and then engage with the task of  redefining it in ways that are fitting to emancipatory social projects, most prominently a communist one, in the broad sense of the term. Originally published in AUTH’s repository.',
-    type: 'distillation',
-    createdAt: new Date('2024-03-15'),
-    updatedAt: new Date('2024-03-15'),
-  },
   'v2 Technical Dive': {
     url: 'https://oktana.dev/blog/v2-technical-dive',
     title: 'v2 Technical Dive',

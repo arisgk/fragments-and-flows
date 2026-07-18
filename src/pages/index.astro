@@ -8,11 +8,15 @@ import { type Post } from '../models/post';
 import PostComponent from '../components/content/Post.astro'
 import { linkStyles } from '../components/typography'
 
+const internalFeaturedWriting: Post[] = [
+  await getEntry('garden', 'towards-a-communist-theory-of-value'),
+].filter((post) => !!post).map((post) => post.data);
+
 const featuredWriting: Post[] = [
   externalPosts['Introducing v2 Editor'],
   externalPosts['v2 Technical Dive'],
   externalPosts['Introducing Oktana'],
-  externalPosts['Towards a Communist Theory of Value'],
+  internalFeaturedWriting[0],
 ];
 
 const excerptsAndNotes: Post[] = [
@@ -21,6 +25,7 @@ const excerptsAndNotes: Post[] = [
   await getEntry('garden', 'artificial-scarcity-social-relations-and-properties-of-economic-goods'),
   await getEntry('garden', 'subjective-roots-of-the-revolutionary-project'),
 ].filter((post) => !!post).map((post) => post.data);
+
 if (excerptsAndNotes.length !== 4) {
   throw new Error('Excerpt or note not found');
 }
