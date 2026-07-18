@@ -29,7 +29,9 @@ export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
         isNotePost(post.data)
     ),
     ...externalPostEntries,
-  ];
+  ]
+  // Sort by update date in descending order
+  .sort((a, b) => b.data.updatedAt.getTime() - a.data.updatedAt.getTime());;
 
   return paginate(filteredPosts, {
     pageSize: 10,
