@@ -2,8 +2,8 @@ import type { ExternalPost } from '../../../models/post';
 
 export const externalPosts: { [key: string]: ExternalPost } = {
   'Introducing v2 Editor': {
-    url: 'https://oktana.dev/blog/introducing-v2-editor',
-    title: 'Introducing v2 Editor',
+    url: 'https://oktana.dev/blog/v2-manifesto',
+    title: 'v2 Editor Manifesto',
     description:
       'The manifesto for the rich text editor with version control capabilities we are building at Oktana, v2. In this post, we describe the basic principles, design decisions and our vision for v2, alongside reflecting on the current state and potential future of knowledge production in society. Originally published in the Oktana blog.',
     type: 'revision',
