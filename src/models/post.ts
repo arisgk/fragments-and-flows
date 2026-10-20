@@ -1,10 +1,10 @@
-import { z } from 'astro:content';
+import { z } from 'astro/zod';
 import { postTypeDetails, postTypes } from './post-type';
 
 const basePostSchema = z.object({
   title: z.string(),
   description: z.string(),
-  image: z.string().url().optional(),
+  image: z.url().optional(),
   type: z.enum(postTypes).default('draft'),
   createdAt: z.coerce.date(),
   updatedAt: z.coerce.date(),
@@ -17,7 +17,7 @@ const internalPostSchema = basePostSchema.extend({
 export type InternalPost = z.infer<typeof internalPostSchema>;
 
 const externalPostSchema = basePostSchema.extend({
-  url: z.string().url(),
+  url: z.url(),
 });
 
 export type ExternalPost = z.infer<typeof externalPostSchema>;

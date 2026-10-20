@@ -1,6 +1,7 @@
 import pg from 'pg';
 import { randomBytes } from 'crypto';
-import { z } from 'zod';
+import { DATABASE_SSL, DATABASE_URL } from 'astro:env/server';
+import { z } from 'astro/zod';
 import {
   type Subscriber,
   type SubscribeResult,
@@ -11,7 +12,7 @@ import {
 const { Client } = pg;
 
 export const subscribeInputSchema = z.object({
-  email: z.string().email('Invalid email address').toLowerCase().trim(),
+  email: z.email('Invalid email address').toLowerCase().trim(),
 });
 
 export type SubscribeInput = z.infer<typeof subscribeInputSchema>;
@@ -44,11 +45,8 @@ const toSubscriber = (row: DBSubscriber): Subscriber => {
 
 async function getClient() {
   const client = new Client({
-    connectionString: import.meta.env.DATABASE_URL,
-    ssl:
-      import.meta.env.DATABASE_SSL === 'true'
-        ? { rejectUnauthorized: false }
-        : false,
+    connectionString: DATABASE_URL,
+    ssl: DATABASE_SSL ? { rejectUnauthorized: false } : false,
   });
 
   await client.connect();

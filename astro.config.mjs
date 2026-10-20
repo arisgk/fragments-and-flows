@@ -1,8 +1,9 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig, envField } from 'astro/config';
 import netlify from '@astrojs/netlify';
 import icon from 'astro-icon';
 import tailwindcss from '@tailwindcss/vite';
+import { unified } from '@astrojs/markdown-remark';
 import rehypeClassNames from 'rehype-class-names';
 
 import { linkStyles } from './src/components/typography';
@@ -10,31 +11,44 @@ import { linkStyles } from './src/components/typography';
 // https://astro.build/config
 export default defineConfig({
   output: 'static',
+  compressHTML: true,
+  env: {
+    schema: {
+      DATABASE_URL: envField.string({ context: 'server', access: 'secret' }),
+      DATABASE_SSL: envField.boolean({
+        context: 'server',
+        access: 'secret',
+        default: false,
+      }),
+    },
+  },
   vite: {
     plugins: [tailwindcss()],
   },
   markdown: {
-    rehypePlugins: [
-      [
-        rehypeClassNames,
-        {
-          p: 'text-black/85 dark:text-white/85 text-base/7 md:text-lg/9 text-left sm:text-justify mb-6',
-          a: linkStyles,
-          h1: 'text-black/90 dark:text-white/90 text-3xl sm:text-4xl md:text-5xl font-serif font-bold mb-6',
-          h2: 'text-black/90 dark:text-white/90 text-xl sm:text-2xl md:text-3xl font-serif font-bold mb-6',
-          h3: 'text-black/90 dark:text-white/90 text-lg md:text-[1.375rem] font-serif font-bold mb-4',
-          h4: 'text-black/90 dark:text-white/90 text-lg md:text-xl font-serif font-bold mb-2',
-          h5: 'text-black/90 dark:text-white/90 text-base md:text-lg font-serif font-bold mb-2',
-          h6: 'text-black/90 dark:text-white/90 text-sm md:text-base font-serif font-bold mb-2',
-          ul: 'list-disc pl-6 mb-4',
-          ol: 'list-decimal pl-6 mb-4',
-          li: 'text-black/90 dark:text-white/90 text-base/7 md:text-lg/9 text-left sm:text-justify',
-          pre: 'p-4 font-mono bg-black/5 overflow-x-auto mb-6',
-          blockquote:
-            'text-base/loose pl-4 border-l-4 border-black/10 dark:border-white/10 mb-4',
-        },
+    processor: unified({
+      rehypePlugins: [
+        [
+          rehypeClassNames,
+          {
+            p: 'text-black/85 dark:text-white/85 text-base/7 md:text-lg/9 text-left sm:text-justify mb-6',
+            a: linkStyles,
+            h1: 'text-black/90 dark:text-white/90 text-3xl sm:text-4xl md:text-5xl font-serif font-bold mb-6',
+            h2: 'text-black/90 dark:text-white/90 text-xl sm:text-2xl md:text-3xl font-serif font-bold mb-6',
+            h3: 'text-black/90 dark:text-white/90 text-lg md:text-[1.375rem] font-serif font-bold mb-4',
+            h4: 'text-black/90 dark:text-white/90 text-lg md:text-xl font-serif font-bold mb-2',
+            h5: 'text-black/90 dark:text-white/90 text-base md:text-lg font-serif font-bold mb-2',
+            h6: 'text-black/90 dark:text-white/90 text-sm md:text-base font-serif font-bold mb-2',
+            ul: 'list-disc pl-6 mb-4',
+            ol: 'list-decimal pl-6 mb-4',
+            li: 'text-black/90 dark:text-white/90 text-base/7 md:text-lg/9 text-left sm:text-justify',
+            pre: 'p-4 font-mono bg-black/5 overflow-x-auto mb-6',
+            blockquote:
+              'text-base/loose pl-4 border-l-4 border-black/10 dark:border-white/10 mb-4',
+          },
+        ],
       ],
-    ],
+    }),
     shikiConfig: {
       theme: 'catppuccin-macchiato',
     },
