@@ -72,7 +72,7 @@ const { page } = Astro.props as { page: Page<CollectionEntry<'garden'>> };
 
   {
     page.lastPage > 1 && (
-      <PaginationControls page={page} basePath={`/garden/writing`} />
+      <PaginationControls page={page} basePath={`/garden/notes-and-excerpts`} />
     )
   }
 </Layout>
