@@ -6,12 +6,14 @@ import Button from '../components/actions/buttons/Button.astro';
 import { externalPosts } from '../content/garden/external';
 import { type Post } from '../models/post';
 import { postTypesPagePath } from '../models/post-type';
-import PostComponent from '../components/content/Post.astro'
-import { linkStyles } from '../components/typography'
+import PostComponent from '../components/content/Post.astro';
+import { linkStyles } from '../components/typography';
 
 const internalFeaturedWriting: Post[] = [
   await getEntry('garden', 'towards-a-communist-theory-of-value'),
-].filter((post) => !!post).map((post) => post.data);
+]
+  .filter((post) => !!post)
+  .map((post) => post.data);
 
 const featuredWriting: Post[] = [
   externalPosts['Introducing v2 Editor'],
@@ -21,17 +23,26 @@ const featuredWriting: Post[] = [
 ];
 
 const excerptsAndNotes: Post[] = [
-  await getEntry('garden', 'thinking-and-art-as-interplay-between-creator-and-audience'),
+  await getEntry(
+    'garden',
+    'thinking-and-art-as-interplay-between-creator-and-audience'
+  ),
   await getEntry('garden', 'software-philosophy-of-language-and-ddd'),
-  await getEntry('garden', 'artificial-scarcity-social-relations-and-properties-of-economic-goods'),
+  await getEntry(
+    'garden',
+    'artificial-scarcity-social-relations-and-properties-of-economic-goods'
+  ),
   await getEntry('garden', 'subjective-roots-of-the-revolutionary-project'),
-].filter((post) => !!post).map((post) => post.data);
+]
+  .filter((post) => !!post)
+  .map((post) => post.data);
 
 if (excerptsAndNotes.length !== 4) {
   throw new Error('Excerpt or note not found');
 }
 
-const heroParagraphStyles = 'text-black/85 dark:text-white/85 text-base/6 sm:text-lg/7 md:text-xl/8 sm:text-justify m-0 font-light'
+const heroParagraphStyles =
+  'text-black/85 dark:text-white/85 text-base/6 sm:text-lg/7 md:text-xl/8 sm:text-justify m-0 font-light';
 ---
 
 <Layout title="Fragments & Flows">
@@ -39,7 +50,14 @@ const heroParagraphStyles = 'text-black/85 dark:text-white/85 text-base/6 sm:tex
     <div class="flex flex-auto flex-col justify-around">
       <div class="flex flex-col py-0 gap-6">
         <p class={heroParagraphStyles}>
-          Hi, I’m Aris! Welcome to my personal website and <a href="https://maggieappleton.com/garden-history" target="_blank" rel="noopener" class={linkStyles}>digital garden</a>!
+          Hi, I’m Aris! Welcome to my personal website and
+          <a
+            href="https://maggieappleton.com/garden-history"
+            target="_blank"
+            rel="noopener"
+            class={linkStyles}
+            >digital garden</a
+          >!
         </p>
         <p class={heroParagraphStyles}>
           I write software, so much of the content in this website is around
@@ -48,24 +66,34 @@ const heroParagraphStyles = 'text-black/85 dark:text-white/85 text-base/6 sm:tex
           and human-computer interaction.
         </p>
         <p class={heroParagraphStyles}>
-          But I dislike being a specialist. I enjoy reading philosophy and
-          human sciences, especially political theory and sociology. I like
-          reflecting on how we think and work, especially when it comes to
-          knowledge work. I seek to understand the various ontologies behind
-          philosophical systems and the flows of influence and association
-          between thinkers.
+          But I dislike being a specialist. I enjoy reading philosophy and human
+          sciences, especially political theory and sociology. I like reflecting
+          on how we think and work, especially when it comes to knowledge work.
+          I seek to understand the various ontologies behind philosophical
+          systems and the flows of influence and association between thinkers.
         </p>
         <p class={heroParagraphStyles}>
           I believe there is something fundamentally wrong with the current
           social order and seek to analyze its inner workings while organizing
           with people that want to create alternatives. I endorse emancipatory
-          social forms that broadly belong to the anarchist communist
-          tradition.
+          social forms that broadly belong to the anarchist communist tradition.
         </p>
         <p class={heroParagraphStyles}>
-          I am a member of a small software R&D collective, <a href="https://oktana.dev" target="_blank" rel="noopener" class={linkStyles}>Oktana</a>, and these
-          days we are focusing on developing <a href="https://v2editor.com" target="_blank" rel="noopener" class={linkStyles}>v2</a>, a local-first rich text
-          editor with version control capabilities.
+          I am a member of a small software R&D collective,
+          <a
+            href="https://oktana.dev"
+            target="_blank"
+            rel="noopener"
+            class={linkStyles}
+            >Oktana</a
+          >, and these days we are focusing on developing
+          <a
+            href="https://v2editor.com"
+            target="_blank"
+            rel="noopener"
+            class={linkStyles}
+            >v2</a
+          >, a local-first rich text editor with version control capabilities.
         </p>
       </div>
     </div>
@@ -74,7 +102,6 @@ const heroParagraphStyles = 'text-black/85 dark:text-white/85 text-base/6 sm:tex
   <div class="px-6">
     <hr class="my-14 opacity-10 text-black dark:text-white" />
   </div>
-  
 
   <div
     class="flex-auto flex flex-col align-stretch sm:align-start gap-6 md:gap-8 px-6"
@@ -86,8 +113,9 @@ const heroParagraphStyles = 'text-black/85 dark:text-white/85 text-base/6 sm:tex
         The Garden
       </h1>
       <p class={heroParagraphStyles}>
-        A collection of essays, notes and excerpts being curated over time.
-        Each post is marked with its <a href={postTypesPagePath} class={linkStyles}>type</a>.
+        A collection of essays, notes and excerpts being curated over time. Each
+        post is marked with its
+        <a href={postTypesPagePath} class={linkStyles}>type</a>.
       </p>
     </div>
     <div class="flex flex-col gap-8">
@@ -103,19 +131,20 @@ const heroParagraphStyles = 'text-black/85 dark:text-white/85 text-base/6 sm:tex
         </p>
       </div>
 
-      {
-        featuredWriting.length > 0 && (
-          <div class="flex flex-col gap-6">
+      {featuredWriting.length > 0 && (
+        <><div class="flex flex-col gap-6">
             {featuredWriting.map((post) => (
               <PostComponent post={post} size="normal" />
             ))}
-            
           </div>
           <a href="/garden/writing/1">
-            <Button classes="w-full sm:w-auto" text="See all Essays and Drafts" size="lg" />
-          </a>
-        )
-      }
+            <Button
+              classes="w-full sm:w-auto"
+              text="See all Essays and Drafts"
+              size="lg"
+            />
+          </a></>
+      )}
     </div>
 
     <hr class="my-10 opacity-10 text-black dark:text-white" />
@@ -133,20 +162,20 @@ const heroParagraphStyles = 'text-black/85 dark:text-white/85 text-base/6 sm:tex
         </p>
       </div>
 
-      {
-        excerptsAndNotes.length > 0 && (
-          <div class="flex flex-col gap-6">
+      {excerptsAndNotes.length > 0 && (
+        <><div class="flex flex-col gap-6">
             {excerptsAndNotes.map((post) => (
               <PostComponent post={post} size="small" displayDate={false} />
             ))}
-            
           </div>
           <a href="/garden/notes-and-excerpts/1">
-            <Button classes="w-full sm:w-auto" text="See all Notes and Excerpts" size="lg" />
-          </a>
-        )
-      }
+            <Button
+              classes="w-full sm:w-auto"
+              text="See all Notes and Excerpts"
+              size="lg"
+            />
+          </a></>
+      )}
     </div>
-    
   </div>
 </Layout>

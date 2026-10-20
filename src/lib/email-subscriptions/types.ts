@@ -10,13 +10,10 @@ export type Subscriber = {
 };
 
 export type SubscribeResult =
-  | (SuccessResult & { alreadySubscribed?: boolean })
-  | ErrorResult;
+  (SuccessResult & { alreadySubscribed?: boolean }) | ErrorResult;
 
 export type UnsubscribeResult =
-  | (SuccessResult & { alreadyUnsubscribed?: boolean })
-  | ErrorResult;
+  (SuccessResult & { alreadyUnsubscribed?: boolean }) | ErrorResult;
 
 export type GetSubscribersResult =
-  | SuccessResult<Pick<Subscriber, 'email' | 'unsubscribeToken'>[]>
-  | ErrorResult;
+  SuccessResult<Pick<Subscriber, 'email' | 'unsubscribeToken'>[]> | ErrorResult;
