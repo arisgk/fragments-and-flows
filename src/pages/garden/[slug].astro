@@ -2,7 +2,15 @@
 import { type GetStaticPaths } from 'astro';
 import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
-import { getFormattedDisplayDate, isInternalPost } from '../../models/post';
+import { Icon } from 'astro-icon/components';
+import {
+  getFormattedDisplayDate,
+  getIconName,
+  getTypeLabel,
+  isInternalPost,
+} from '../../models/post';
+import { getPostTypeUrl } from '../../models/post-type';
+import { linkStyles } from '../../components/typography';
 
 export const prerender = true;
 
@@ -41,6 +49,13 @@ const { Content } = await render(postEntry);
         <p class="text-xs md:text-sm text-black/70 dark:text-white/70">
           {getFormattedDisplayDate(post)}
         </p>
+        <a
+          href={getPostTypeUrl(post.type)}
+          class={`${linkStyles} flex items-center gap-1 text-xs md:text-sm`}
+        >
+          <Icon name={getIconName(post)} aria-hidden="true" class="size-4" />
+          {getTypeLabel(post)}
+        </a>
       </div>
       <div>
         <Content />

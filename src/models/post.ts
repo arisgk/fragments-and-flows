@@ -1,12 +1,11 @@
 import { z } from 'astro:content';
+import { postTypeDetails, postTypes } from './post-type';
 
 const basePostSchema = z.object({
   title: z.string(),
   description: z.string(),
   image: z.string().url().optional(),
-  type: z
-    .enum(['idea', 'excerpt', 'note', 'draft', 'revision', 'distillation'])
-    .default('draft'),
+  type: z.enum(postTypes).default('draft'),
   createdAt: z.coerce.date(),
   updatedAt: z.coerce.date(),
 });
@@ -27,7 +26,6 @@ export const postSchema = z.union([internalPostSchema, externalPostSchema]);
 
 export type Post = z.infer<typeof postSchema>;
 
-export type IdeaPost = Post & { type: 'idea' };
 export type ExcerptPost = Post & { type: 'excerpt' };
 export type NotePost = Post & { type: 'note' };
 export type DraftPost = Post & { type: 'draft' };
@@ -53,10 +51,6 @@ export const getFormattedDisplayDate = (post: Post) =>
     day: 'numeric',
   });
 
-export const isIdeaPost = (post: Post): post is IdeaPost => {
-  return post.type === 'idea';
-};
-
 export const isExcerptPost = (post: Post): post is ExcerptPost => {
   return post.type === 'excerpt';
 };
@@ -77,19 +71,6 @@ export const isDistillationPost = (post: Post): post is DistillationPost => {
   return post.type === 'distillation';
 };
 
-export const getIconName = (post: Post) => {
-  switch (post.type) {
-    case 'idea':
-      return 'idea';
-    case 'excerpt':
-      return 'excerpt';
-    case 'note':
-      return 'note';
-    case 'draft':
-      return 'draft';
-    case 'revision':
-      return 'document';
-    case 'distillation':
-      return 'graduation-cap';
-  }
-};
+export const getIconName = (post: Post) => postTypeDetails[post.type].icon;
+
+export const getTypeLabel = (post: Post) => postTypeDetails[post.type].label;

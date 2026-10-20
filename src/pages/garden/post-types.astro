@@ -1,0 +1,79 @@
+---
+import { Icon } from 'astro-icon/components';
+
+import Layout from '../../layouts/Layout.astro';
+import Button from '../../components/actions/buttons/Button.astro';
+import {
+  postTypes,
+  postTypeDetails,
+  postTypeGroups,
+  type PostTypeGroup,
+} from '../../models/post-type';
+
+export const prerender = true;
+
+const groups = (Object.keys(postTypeGroups) as PostTypeGroup[]).map(
+  (group) => ({
+    ...postTypeGroups[group],
+    types: postTypes
+      .map((type) => ({ type, ...postTypeDetails[type] }))
+      .filter((details) => details.group === group),
+  })
+);
+
+const paragraphStyles =
+  'text-black/85 dark:text-white/85 text-base/7 md:text-lg/8 sm:text-justify font-light';
+---
+
+<Layout
+  title="Fragments and Flows | Post Types"
+  description="Fragments and Flows | TODO: one-line description of the post types page."
+>
+  <div class="flex flex-auto justify-center">
+    <div class="px-6 flex-auto w-full max-w-3xl flex flex-col gap-10 md:gap-14">
+      <div class="flex flex-col gap-6">
+        <h1
+          class="text-black/90 dark:text-white/90 text-center sm:text-left text-4xl sm:text-5xl md:text-6xl font-serif font-bold"
+        >
+          Post Types
+        </h1>
+        <p class={paragraphStyles}>
+          This website is a digital garden. Unlike a typical blog, it isn't a
+          series of polished articles in the order they were published, but a
+          collection of posts of different types, in varying stages of maturity.
+          Each post is marked with an icon showing its type, explained below.
+        </p>
+      </div>
+
+      {
+        groups.map((group) => (
+          <section class="flex flex-col gap-8">
+            <h2 class="text-black/90 dark:text-white/90 text-center sm:text-left text-2xl sm:text-3xl md:text-4xl font-serif font-bold">
+              {group.label}
+            </h2>
+
+            {group.types.map(({ type, label, icon, description }) => (
+              <article id={type} class="flex flex-col gap-3 scroll-mt-6">
+                <div class="flex gap-2 items-center justify-center sm:justify-start text-black/90 dark:text-white/90">
+                  <Icon name={icon} aria-hidden="true" class="size-6" />
+                  <h3 class="text-xl sm:text-2xl md:text-3xl font-serif font-bold">
+                    {label}
+                  </h3>
+                </div>
+                <p class={paragraphStyles}>{description}</p>
+              </article>
+            ))}
+
+            <a href={group.listPath}>
+              <Button
+                classes="w-full sm:w-auto"
+                text={`See all ${group.label}`}
+                size="lg"
+              />
+            </a>
+          </section>
+        ))
+      }
+    </div>
+  </div>
+</Layout>

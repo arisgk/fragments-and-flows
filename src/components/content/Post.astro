@@ -7,6 +7,7 @@ import {
   isInternalPost,
   isExternalPost,
   getIconName,
+  getTypeLabel,
 } from '../../models/post';
 
 interface Props {
@@ -35,7 +36,7 @@ const { post, size, displayDate = true } = Astro.props;
     rel={isExternalPost(post) ? 'noopener' : undefined}
   >
     <div class="flex gap-2 items-center">
-      <div class="text-black/90 dark:text-white/90">
+      <div class="text-black/90 dark:text-white/90" title={getTypeLabel(post)}>
         <Icon name={getIconName(post)} aria-hidden="true" class="size-6" />
       </div>
 
@@ -44,6 +45,7 @@ const { post, size, displayDate = true } = Astro.props;
           ? 'text-black/90 dark:text-white/90 text-xl sm:text-2xl md:text-3xl text-center sm:text-left font-serif font-bold'
           : 'text-black/90 dark:text-white/90 text-lg md:text-[1.375rem] text-center sm:text-left font-serif font-bold'}
       >
+        <span class="sr-only">{getTypeLabel(post)}: </span>
         {post.title}
       </h3>
     </div>
