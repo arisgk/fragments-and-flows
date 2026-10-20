@@ -3,6 +3,8 @@ import { Icon } from 'astro-icon/components';
 
 import Layout from '../../layouts/Layout.astro';
 import Button from '../../components/actions/buttons/Button.astro';
+import { linkStyles } from '../../components/typography';
+
 import {
   postTypes,
   postTypeDetails,
@@ -27,7 +29,7 @@ const paragraphStyles =
 
 <Layout
   title="Fragments and Flows | Post Types"
-  description="Fragments and Flows | TODO: one-line description of the post types page."
+  description="Fragments and Flows | The different types of posts in the garden, from rough notes and excerpts to drafts, revisions and distillations."
 >
   <div class="flex flex-auto justify-center">
     <div class="px-6 flex-auto w-full max-w-3xl flex flex-col gap-10 md:gap-14">
@@ -41,6 +43,16 @@ const paragraphStyles =
           This website is a digital garden. Unlike a typical blog, it isn't a
           series of polished articles in the order they were published, but a
           collection of posts of different types, in varying stages of maturity.
+          Much of the culture behind digital gardens is about thinking in public
+          and sharing work that is in progress. As <a
+            href="/garden/thinking-and-art-as-interplay-between-creator-and-audience"
+            class={linkStyles}>Castoriadis and Rodostoglou observe</a
+          >, removing the scaffolding and giving the impression of delivering a
+          polished artifact often deprives the audience of the essential
+          participation and encounter that happen when engaging with the work as
+          it's being developed.
+        </p>
+        <p class={paragraphStyles}>
           Each post is marked with an icon showing its type, explained below.
         </p>
       </div>
