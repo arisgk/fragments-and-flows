@@ -27,7 +27,9 @@ const excerptsAndNotes: Post[] = [
     'garden',
     'thinking-and-art-as-interplay-between-creator-and-audience'
   ),
+  await getEntry('garden', 'llms-and-technical-foundations-of-production'),
   await getEntry('garden', 'the-agentic-galley-drum'),
+  await getEntry('garden', 'llms-ontology-and-philosophy-of-mind'),
   await getEntry('garden', 'software-philosophy-of-language-and-ddd'),
   await getEntry(
     'garden',
@@ -38,7 +40,7 @@ const excerptsAndNotes: Post[] = [
   .filter((post) => !!post)
   .map((post) => post.data);
 
-if (excerptsAndNotes.length !== 5) {
+if (excerptsAndNotes.length !== 7) {
   throw new Error('Excerpt or note not found');
 }
 
