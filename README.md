@@ -12,6 +12,12 @@ When updating posts, it's good to set the updated-at date manually in the metada
 
 ## Development
 
+[Git LFS](https://git-lfs.com/) is needed for Allume's exported boards, in `public/allume/`. Once it's installed, pull them:
+
+```sh
+git lfs pull
+```
+
 These are the basic commands used for development:
 
 | Command           | Action                                       |
@@ -56,3 +62,5 @@ Server-rendered routes (the subscribe API and the unsubscribe page) are not part
 ## Deployment
 
 The website is currently deployed to [Netlify](https://www.netlify.com/) using the relevant [Netlify Adapter](https://docs.astro.build/en/guides/integrations-guide/netlify/). Every time you push to the `main` branch, a fresh Netlify deployment is triggered (there is an integration between GitHub and Netlify).
+
+Netlify's builds fetch the Git LFS files because the `GIT_LFS_ENABLED` environment variable is set in the site's settings. It has to be set there rather than in `netlify.toml`, which Netlify reads only after cloning.

@@ -1,0 +1,2 @@
+# Allume's exported boards, whose files are large and rewritten on every export
+public/allume/** filter=lfs diff=lfs merge=lfs -text
