@@ -74,4 +74,7 @@ Server-rendered routes (the subscribe API and the unsubscribe page) are not part
 
 The website is currently deployed to [Netlify](https://www.netlify.com/) using the relevant [Netlify Adapter](https://docs.astro.build/en/guides/integrations-guide/netlify/). Every time you push to the `main` branch, a fresh Netlify deployment is triggered (there is an integration between GitHub and Netlify).
 
-Netlify's builds fetch the Git LFS files because the `GIT_LFS_ENABLED` environment variable is set in the site's settings. It has to be set there rather than in `netlify.toml`, which Netlify reads only after cloning.
+The Netlify site is already configured for Allume's boards, which are in Git LFS. To deploy the website to another Netlify site, set both of these in its settings on Netlify:
+
+- the environment variable `GIT_LFS_ENABLED`, to `true`, so that builds fetch Git LFS files. It has to be set in the settings rather than in `netlify.toml`, which Netlify reads only after cloning.
+- the build command `git lfs pull --include="public/allume/**" --exclude="" && npm run build`. Netlify fetches only some file types from Git LFS, which would leave the boards' `boards.json` and views as pointers, so the build fetches everything under `public/allume/` first.
