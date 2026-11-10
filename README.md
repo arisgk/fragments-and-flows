@@ -33,18 +33,15 @@ Astro is opinionated in how you add routes, so it's good to familiarize with [fi
 
 ### Content & Digital Garden
 
+#### Garden Posts
+
 Astro [Content Collections](https://docs.astro.build/en/guides/content-collections/) are used for defining and loading the digital garden posts.
 
-### Allume Boards
+#### Ark of Reflections (Allume Boards)
 
-The boards in `public/allume/` are exported from Allume with `allume-web-export`, which writes each board's view, its files and the viewer that makes it interactive:
+The boards in `public/allume/` are exported from Allume with the `embed` command of [allume-web-export](https://github.com/oktana-coop/allume-web-export), which writes each board's view, its files and the viewer that makes it interactive, for the website to show in its own pages. To export them again, follow its [instructions for embedding](https://github.com/oktana-coop/allume-web-export#embed), writing into `public/allume/`, with the website's URLs: boards at `/garden/boards/{slug}/` and files at `/allume/files`. The root board is labeled Home.
 
-```sh
-allume-web-export embed <export folder> --out public/allume --replace \
-  --board-url '/garden/boards/{slug}/' --files-url /allume/files --root-label Home
-```
-
-The `boards` content collection loads them from `public/allume/boards.json`, and each board gets a page at `/garden/boards/<slug>/`. The index shows the root board's preview images, which `embed` draws, in a link to its page.
+The `boards` content collection loads them from `public/allume/boards.json`, and each board gets a page at `/garden/boards/<slug>/`.
 
 ### Testing
 
