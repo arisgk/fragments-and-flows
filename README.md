@@ -35,6 +35,17 @@ Astro is opinionated in how you add routes, so it's good to familiarize with [fi
 
 Astro [Content Collections](https://docs.astro.build/en/guides/content-collections/) are used for defining and loading the digital garden posts.
 
+### Allume Boards
+
+The boards in `public/allume/` are exported from Allume with `allume-web-export`, which writes each board's view, its files and the viewer that makes it interactive:
+
+```sh
+allume-web-export embed <export folder> --out public/allume --replace \
+  --board-url '/garden/boards/{slug}/' --files-url /allume/files --root-label Home
+```
+
+The `boards` content collection loads them from `public/allume/boards.json`, and each board gets a page at `/garden/boards/<slug>/`. The index shows the root board's preview images, which `embed` draws, in a link to its page.
+
 ### Testing
 
 End-to-end tests use [Playwright](https://playwright.dev/), running against the production build. Download Playwright's Chromium once:

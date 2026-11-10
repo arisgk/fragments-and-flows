@@ -52,3 +52,11 @@ export const subscribeToNewsletter = async ({
   await page.getByLabel('Email address').fill(email);
   await page.getByRole('button', { name: 'Subscribe' }).click();
 };
+
+/** The button in the navigation bar that switches between the themes. */
+export const themeToggle = ({ page }: { page: Page }) =>
+  page.getByRole('button', { name: 'Toggle dark mode' });
+
+export const toggleTheme = async ({ page }: { page: Page }) => {
+  await themeToggle({ page }).click();
+};

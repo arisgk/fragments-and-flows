@@ -1,15 +1,34 @@
 ---
 import Logo from '../../assets/images/logo.svg';
 import ThemeSwitcher from '../ThemeSwitcher.astro';
+
+interface Props {
+  compact?: boolean;
+  class?: string;
+}
+
+const { compact = false, class: className } = Astro.props;
 ---
 
 <nav
-  class="flex flex-initial justify-center items-center px-4 py-4 sm:px-6 sm:py-6 mb-4"
+  class:list={[
+    'flex flex-initial justify-center items-center',
+    compact ? 'px-4 py-2' : 'px-4 py-4 sm:px-6 sm:py-6 mb-4',
+    className,
+  ]}
 >
-  <div class="flex-auto flex justify-start lg:justify-center">
+  <div
+    class:list={[
+      'flex-auto flex justify-start',
+      { 'lg:justify-center': !compact },
+    ]}
+  >
     <a href="/" class="no-underline">
       <Logo
-        class="fill-black/90 dark:fill-white/90 h-[32px] sm:h-[48px] md:h-[64px] w-fit"
+        class:list={[
+          'fill-black/90 dark:fill-white/90 w-fit',
+          compact ? 'h-[24px]' : 'h-[32px] sm:h-[48px] md:h-[64px]',
+        ]}
       />
     </a>
   </div>

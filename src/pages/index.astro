@@ -1,5 +1,5 @@
 ---
-import { getEntry } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
 
 import Layout from '../layouts/Layout.astro';
 import Button from '../components/actions/buttons/Button.astro';
@@ -8,6 +8,7 @@ import { type Post } from '../models/post';
 import { postTypesPagePath } from '../models/post-type';
 import PostComponent from '../components/content/Post.astro';
 import { linkStyles } from '../components/typography';
+import BoardPreview from '../components/content/BoardPreview.astro';
 
 const internalFeaturedWriting: Post[] = [
   await getEntry('garden', 'towards-a-communist-theory-of-value'),
@@ -21,6 +22,8 @@ const featuredWriting: Post[] = [
   externalPosts['Introducing Oktana'],
   internalFeaturedWriting[0],
 ];
+
+const [rootBoard] = await getCollection('boards', (board) => board.data.isRoot);
 
 const excerptsAndNotes: Post[] = [
   await getEntry(
@@ -179,6 +182,24 @@ const heroParagraphStyles =
             />
           </a></>
       )}
+    </div>
+
+    <hr class="my-10 opacity-10 text-black dark:text-white" />
+
+    <div class="flex flex-col gap-8">
+      <div class="flex flex-col gap-4">
+        <h2
+          class="text-black/90 dark:text-white/90 text-center sm:text-left text-2xl sm:text-3xl md:text-4xl font-serif font-bold"
+        >
+          The Ark of Reflections
+        </h2>
+        <p class={heroParagraphStyles}>
+          A map of raw thoughts, notes and excerpts, laid out on boards within
+          boards and connected by linked cards.
+        </p>
+      </div>
+
+      {rootBoard && <BoardPreview board={rootBoard.data} />}
     </div>
   </div>
 </Layout>

@@ -1,116 +1,17 @@
 ---
+import type { ComponentProps } from 'astro/types';
+import BaseLayout from './BaseLayout.astro';
 import MainContainer from '../components/MainContainer.astro';
 import NavigationBar from '../components/navigation/NavigationBar.astro';
 import Footer from '../components/Footer.astro';
 
-interface Props {
-  title: string;
-  description?: string;
-  image?: string;
-}
-
-const {
-  title = 'Fragments & Flows',
-  description = "Fragments & Flows is Aris Goudouras' personal website and digital garden",
-  image = 'https://fragmentsandflows.com/fragments-and-flows-1200x630.png',
-} = Astro.props;
+type Props = ComponentProps<typeof BaseLayout>;
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-
-    <!-- SEO -->
-    <title>{title}</title>
-    <meta name="description" content={description} />
-
-    <!-- Open Graph -->
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:image" content={image} />
-
-    <!-- Twitter -->
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={image} />
-
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap"
-      rel="stylesheet"
-    />
-    <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
-
-    <!-- Apply theme before first paint to avoid a flash of the light theme -->
-    <script is:inline>
-      {
-        let stored = null;
-        try {
-          stored = localStorage.getItem('theme');
-        } catch {}
-        const systemPrefersDark = window.matchMedia(
-          '(prefers-color-scheme: dark)'
-        ).matches;
-        const isDark = stored === 'dark' || (!stored && systemPrefersDark);
-        document.documentElement.classList.toggle('dark', isDark);
-      }
-    </script>
-  </head>
-  <body class="bg-[#f9f9f7] dark:bg-neutral-800">
-    <MainContainer>
-      <NavigationBar />
-      <slot />
-      <Footer />
-    </MainContainer>
-  </body>
-</html>
-
-<script>
-  import { loadThemeAndRegisterSwitchHandlers } from '../theme';
-  loadThemeAndRegisterSwitchHandlers();
-</script>
-
-<style is:global>
-  @import 'tailwindcss';
-
-  @theme {
-    --font-sans: 'Noto Sans', sans-serif;
-    --font-serif: 'Spectral', serif;
-    --font-mono: 'Fira Code', monospace;
-
-    --color-indigo-50: #f3f3ff;
-    --color-indigo-100: #e9e8ff;
-    --color-indigo-200: #d3d3ff;
-    --color-indigo-300: #b6b3ff;
-    --color-indigo-400: #9288fd;
-    --color-indigo-500: #7d7ddb;
-    --color-indigo-600: #6860cb;
-    --color-indigo-700: #5950b2;
-    --color-indigo-800: #494390;
-    --color-indigo-900: #3e3b74;
-    --color-indigo-950: #262343;
-  }
-
-  @custom-variant dark (&:where(.dark, .dark *));
-
-  html {
-    font-family: 'Noto Sans', sans-serif;
-    font-optical-sizing: auto;
-  }
-  body {
-    margin: 0;
-  }
-</style>
+<BaseLayout {...Astro.props}>
+  <MainContainer>
+    <NavigationBar />
+    <slot />
+    <Footer />
+  </MainContainer>
+</BaseLayout>

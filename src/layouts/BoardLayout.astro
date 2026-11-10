@@ -1,0 +1,18 @@
+---
+import type { ComponentProps } from 'astro/types';
+import BaseLayout from './BaseLayout.astro';
+import NavigationBar from '../components/navigation/NavigationBar.astro';
+
+type Props = ComponentProps<typeof BaseLayout>;
+---
+
+<BaseLayout {...Astro.props}>
+  <link slot="head" rel="stylesheet" href="/allume/allume.css" />
+  <script slot="head" is:inline defer src="/allume/allume.js"></script>
+  <div class="h-dvh flex flex-col">
+    <NavigationBar compact class="bg-[#e0dfde] dark:bg-[#191919]" />
+    <main class="flex-auto min-h-0">
+      <slot />
+    </main>
+  </div>
+</BaseLayout>

@@ -1,0 +1,28 @@
+---
+import { type GetStaticPaths, type InferGetStaticPropsType } from 'astro';
+import { getCollection, render } from 'astro:content';
+import BoardLayout from '../../../layouts/BoardLayout.astro';
+
+export const prerender = true;
+
+export const getStaticPaths = (async () => {
+  const boards = await getCollection('boards');
+
+  return boards.map((board) => ({
+    params: { slug: board.id },
+    props: { board },
+  }));
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { board } = Astro.props;
+const { Content } = await render(board);
+---
+
+<BoardLayout
+  title={board.data.label}
+  description={`${board.data.label} board in the Fragments & Flows Ark of Reflections`}
+>
+  <Content />
+</BoardLayout>

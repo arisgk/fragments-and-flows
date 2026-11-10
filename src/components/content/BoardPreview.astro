@@ -1,0 +1,26 @@
+---
+import { type Board, getBoardUrl } from '../../models/board';
+
+interface Props {
+  board: Board;
+}
+
+const { board } = Astro.props;
+const previewImages = board.previewImages;
+const alt = `The ${board.label} board`;
+---
+
+{previewImages && <a href={getBoardUrl(board.slug)} class="block">
+  <img
+    src={previewImages.light}
+    alt={alt}
+    loading="lazy"
+    class="w-full h-auto rounded-lg outline outline-1 -outline-offset-1 outline-black/10 dark:hidden"
+  />
+  <img
+    src={previewImages.dark}
+    alt={alt}
+    loading="lazy"
+    class="w-full h-auto rounded-lg outline outline-1 -outline-offset-1 outline-white/10 hidden dark:block"
+  />
+</a>}
