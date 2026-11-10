@@ -39,7 +39,7 @@ Astro [Content Collections](https://docs.astro.build/en/guides/content-collectio
 
 #### Ark of Reflections (Allume Boards)
 
-The boards in `public/allume/` are exported from Allume with the `embed` command of [allume-web-export](https://github.com/oktana-coop/allume-web-export), which writes each board's view, its files and the viewer that makes it interactive, for the website to show in its own pages. To export them again, follow its [instructions for embedding](https://github.com/oktana-coop/allume-web-export#embed), writing into `public/allume/`, with the website's URLs: boards at `/garden/boards/{slug}/` and files at `/allume/files`. The root board is labeled Home.
+The boards in `public/allume/` are exported from Allume with the `embed` command of [allume-web-export](https://github.com/oktana-coop/allume-web-export), which writes each board's view, its files and the viewer that makes it interactive, for the website to show in its own pages. To export them again, follow its [instructions for embedding](https://github.com/oktana-coop/allume-web-export#embed), writing into `public/allume/`, with the website's URLs: boards at `/garden/boards/{slug}/` and files at `/allume/files`. The root board is labeled Home, and board cards' previews are 1200 px wide.
 
 The `boards` content collection loads them from `public/allume/boards.json`, and each board gets a page at `/garden/boards/<slug>/`.
 
