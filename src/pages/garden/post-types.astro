@@ -1,9 +1,11 @@
 ---
 import { Icon } from 'astro-icon/components';
+import { getCollection } from 'astro:content';
 
 import Layout from '../../layouts/Layout.astro';
 import Button from '../../components/actions/buttons/Button.astro';
 import { linkStyles } from '../../components/typography';
+import { getBoardUrl } from '../../models/board';
 
 import {
   postTypes,
@@ -22,6 +24,8 @@ const groups = (Object.keys(postTypeGroups) as PostTypeGroup[]).map(
       .filter((details) => details.group === group),
   })
 );
+
+const [rootBoard] = await getCollection('boards', (board) => board.data.isRoot);
 
 const paragraphStyles =
   'text-black/85 dark:text-white/85 text-base/7 md:text-lg/8 sm:text-justify font-light';
@@ -89,6 +93,29 @@ const paragraphStyles =
           />
         </a>
       </section>)}
+
+      {rootBoard && <section
+        id="ark-of-reflections"
+        class="flex flex-col gap-8 scroll-mt-6"
+      >
+        <h2
+          class="text-black/90 dark:text-white/90 text-center sm:text-left text-2xl sm:text-3xl md:text-4xl font-serif font-bold"
+        >
+          The Ark of Reflections
+        </h2>
+        <p class={paragraphStyles}>
+          Besides posts, the garden has the Ark of Reflections: a map of raw
+          thoughts, notes and excerpts, laid out on boards within boards and
+          connected by linked cards.
+        </p>
+        <a href={getBoardUrl(rootBoard.data.slug)}>
+          <Button
+            classes="w-full sm:w-auto"
+            text="Explore the Ark of Reflections"
+            size="lg"
+          />
+        </a>
+      </section>}
     </div>
   </div>
 </Layout>
