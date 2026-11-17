@@ -19,6 +19,15 @@ export const externalPosts: { [key: string]: ExternalPost } = {
     createdAt: new Date('2025-09-07'),
     updatedAt: new Date('2025-09-07'),
   },
+  'Opening the Pensieve: Web Exporting for Allume': {
+    url: 'https://oktana.dev/blog/opening-the-pensieve-web-exporting-for-allume/',
+    title: 'Opening the Pensieve: Web Exporting for Allume',
+    description:
+      'Thinking in private and in public. Introducing our web exporting tool for Allume.',
+    type: 'revision',
+    createdAt: new Date('2026-11-17'),
+    updatedAt: new Date('2026-11-17'),
+  },
   'v2 Technical Dive': {
     url: 'https://oktana.dev/blog/v2-technical-dive',
     title: 'v2 Technical Dive',
