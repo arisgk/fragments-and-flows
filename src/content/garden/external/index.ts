@@ -23,7 +23,7 @@ export const externalPosts: { [key: string]: ExternalPost } = {
     url: 'https://oktana.dev/blog/opening-the-pensieve-web-exporting-for-allume/',
     title: 'Opening the Pensieve: Web Exporting for Allume',
     description:
-      'Thinking in private and in public. Introducing our web exporting tool for Allume.',
+      'Introducing our web exporting tool for Allume. Along the way, we explore how tools for thought can represent and structure ideas and knowledge better, and also the tension between thinking in private and in public.',
     type: 'revision',
     createdAt: new Date('2026-11-17'),
     updatedAt: new Date('2026-11-17'),
