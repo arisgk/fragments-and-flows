@@ -39,7 +39,24 @@ Astro [Content Collections](https://docs.astro.build/en/guides/content-collectio
 
 #### Ark of Reflections (Allume Boards)
 
-The boards in `public/allume/` are exported from Allume with the `embed` command of [allume-web-export](https://github.com/oktana-coop/allume-web-export), which writes each board's view, its files and the viewer that makes it interactive, for the website to show in its own pages. To export them again, follow its [instructions for embedding](https://github.com/oktana-coop/allume-web-export#embed), writing into `public/allume/`, with the website's URLs: boards at `/garden/boards/{slug}/` and files at `/allume/files`. The root board is labeled Home, and board cards' previews are 1200 px wide.
+The boards in `public/allume/` are exported from Allume with the `embed` command of [allume-web-export](https://github.com/oktana-coop/allume-web-export), which writes each board's view, its files and the viewer that makes it interactive, for the website to show in its own pages. To export them again:
+
+1. Install allume-web-export with [Homebrew](https://brew.sh):
+
+   ```sh
+   brew install oktana-coop/tap/allume-web-export
+   ```
+
+2. In Allume, export the Fragments & Flows board with **Export Board As › Allume Bundle…**.
+3. From this folder, run the tool on the bundle:
+
+   ```sh
+   allume-web-export embed "path/to/Fragments & Flows.muse" --out public/allume --replace \
+     --board-url "/garden/boards/{slug}/" --files-url /allume/files \
+     --root-label Home --preview-width 1200
+   ```
+
+   It writes into `public/allume/` with the website's URLs, boards at `/garden/boards/{slug}/` and files at `/allume/files`, labels the root board Home, and draws board cards' previews 1200 px wide.
 
 The `boards` content collection loads them from `public/allume/boards.json`, and each board gets a page at `/garden/boards/<slug>/`.
 
